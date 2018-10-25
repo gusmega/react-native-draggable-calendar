@@ -311,7 +311,11 @@ export class DraggableCalendar extends Component {
   }
 
   _onPressDay(date, available) {
+    const { endDate, startDate } = this.state;
     if (date && available) {
+      if (startDate && endDate === startDate && date > startDate) {
+        return this.resetSelection([startDate, date]);
+      }
       this.resetSelection([date, date]);
     }
   }
@@ -363,7 +367,9 @@ export class DraggableCalendar extends Component {
     return (
       <View style={[styles.headerContainer, headerContainerStyle]}>
         {["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"].map(item => (
-          <Text style={[styles.headerText, headerTextStyle]}>{item}</Text>
+          <Text key={key} style={[styles.headerText, headerTextStyle]}>
+            {item}
+          </Text>
         ))}
       </View>
     );
