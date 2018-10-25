@@ -367,7 +367,7 @@ export class DraggableCalendar extends Component {
     return (
       <View style={[styles.headerContainer, headerContainerStyle]}>
         {["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"].map(item => (
-          <Text key={key} style={[styles.headerText, headerTextStyle]}>
+          <Text key={item} style={[styles.headerText, headerTextStyle]}>
             {item}
           </Text>
         ))}
