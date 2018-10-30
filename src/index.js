@@ -362,10 +362,13 @@ export class DraggableCalendar extends Component {
     this._pressEnd = false;
   }
 
-  _renderHeader() {
+  _renderHeader(identifier) {
     const { headerContainerStyle, headerTextStyle } = this.props;
     return (
-      <View style={[styles.headerContainer, headerContainerStyle]}>
+      <View
+        key={identifier}
+        style={[styles.headerContainer, headerContainerStyle]}
+      >
         {["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"].map(item => (
           <Text key={item} style={[styles.headerText, headerTextStyle]}>
             {item}
@@ -400,7 +403,7 @@ export class DraggableCalendar extends Component {
   _renderMonth({ identifier, data, index }) {
     return [
       this._renderMonthHeader({ identifier }),
-      this._renderHeader(),
+      this._renderHeader({ identifier }),
       this._renderMonthBody({ identifier, data, index })
     ];
   }
